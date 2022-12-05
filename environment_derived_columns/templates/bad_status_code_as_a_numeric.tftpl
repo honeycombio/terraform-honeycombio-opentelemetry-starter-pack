@@ -1,0 +1,22 @@
+IF(
+  BOOL(
+    OR(
+      AND(
+        EXISTS($http.status_code),
+        GTE($http.status_code, ${ count_400s_as_errors ? 400 : 500 })
+      ),
+      AND(
+        EXISTS($status_code),
+        GT($status_code, 1)
+      ),
+      %{ if query_rpc ~}
+      AND(
+        EXISTS($rpc.grpc.status_code),
+        GT($rpc.grpc.status_code, 1)
+      )
+      %{ endif }
+    )
+  ),
+  100,
+  0
+)

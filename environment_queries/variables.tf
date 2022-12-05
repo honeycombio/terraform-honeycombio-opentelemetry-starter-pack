@@ -22,3 +22,40 @@ variable "max_long_duration" {
   type        = number
   default     = 30000
 }
+
+variable "create_required_columns_dataset" {
+  description = "Create a dataset in an environment where columns can be created that are required by the Golden OTEL Starter Pack.  If all required columns already exist in other datasets, you can choose to set this to false"
+  type        = bool
+  default     = true
+}
+
+variable "required_columns_dataset_name" {
+  description = "The name of the dataset used to ensure that all required columns exist in an environment for queries to be implemented"
+  type = string
+  default = "-required-columns-"
+}
+
+variable "dc_log10_duration" {
+  description = "The alias for the dc_log10_duration Derived Column"
+  type = string
+}
+
+variable "dc_protocols" {
+  description = "The alias for the dc_protocols Derived Column"
+  type = string
+}
+
+variable "dc_bad_status_code_as_a_numeric" {
+  description = "The alias for the dc_bad_status_code_as_a_numeric Derived Column"
+  type = string
+}
+
+variable "dc_error_as_a_numeric" {
+  description = "The alias for the dc_error_as_a_numeric Derived Column"
+  type = string
+}
+
+variable "dc_ensure_nonroot_server_span" {
+  description = "The alias for the dc_log10_duration Derived Column"
+  type = string
+}

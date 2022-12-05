@@ -1,0 +1,4 @@
+OR(
+    NOT(EXISTS($trace.parent_id)),
+    EQUALS($span.kind, "server")
+)

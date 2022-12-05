@@ -1,0 +1,13 @@
+IF(
+  OR(EXISTS($rpc.system),EXISTS($http.flavor)),
+  COALESCE(
+    %{ if query_rpc ~}
+    IF(EXISTS($rpc.system), $rpc.system),
+    %{ endif ~}
+    IF(EQUALS($http.flavor, "1.0"), "HTTP/1.0"),
+    IF(EQUALS($http.flavor, "1.1"), "HTTP/1.1"),
+    IF(EQUALS($http.flavor, "2.0"), "HTTP/2"),
+    IF(EQUALS($http.flavor, "3.0"), "HTTP/3"),
+    $http.flavor
+  )
+)

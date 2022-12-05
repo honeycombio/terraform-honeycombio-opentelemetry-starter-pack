@@ -1,0 +1,10 @@
+IF(
+  AND(
+    EXISTS($error),
+    NOT(
+      IN($error, " ", "", "false")
+    )
+  ),
+  100,
+  0
+)
