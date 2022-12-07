@@ -19,7 +19,7 @@ data "honeycombio_query_specification" "rate_of_bad_status_code_spans" {
     value = true
   }
   filter {
-    column = "meta.anotation_type"
+    column = "meta.annotation_type"
     op     = "does-not-exist"
   }
 
