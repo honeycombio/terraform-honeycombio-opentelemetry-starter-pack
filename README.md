@@ -42,7 +42,7 @@ TERRAFORM HONEYCOMBIO GOLDEN-OTEL-STARTER-PACK
 [![OSS Lifecycle](https://img.shields.io/osslifecycle/honeycombio/terraform-honeycombio-golden-otel-starter-pack?color=success)](https://github.com/honeycombio/home/blob/main/honeycomb-oss-lifecycle-and-practices.md)
 [![CI](https://github.com/honeycombio/terraform-honeycombio-golden-otel-starter-pack/actions/workflows/test-terraform-module.yml/badge.svg)](https://github.com/honeycombio/terraform-honeycombio-golden-otel-starter-pack/actions?query=Test%20Terraform%20Module)
 
-This module creates resources like FIXME in [Honeycomb](https://www.honeycomb.io) to kick off exploration
+This module creates resources like Derived Columns, Saved Queries, and Boards in [Honeycomb](https://www.honeycomb.io) to kick off exploration of OpenTelemetry data in your environment
 
 ## Use
 
@@ -51,7 +51,6 @@ The minimal config is:
 ```hcl
 module "explore-honeycombio-golden-otel-starter-pack" {
   source = "honeycombio/golden-otel-starter-pack/honeycombio"
-  #FIXME 
 }
 ```
 
@@ -61,7 +60,7 @@ Set the API key used by Terraform setting the HONEYCOMB_API_KEY environment vari
 export HONEYCOMB_API_KEY=$HONEYCOMB_API_KEY
 ```
 
-Now you can run `terraform plan/apply` in sequence.
+Now you can run `terraform init/plan/apply` in sequence.
 
 For more config options,
 see [USAGE.md](https://github.com/honeycombio/terraform-honeycombio-golden-otel-starter-pack/blob/main/USAGE.md)
