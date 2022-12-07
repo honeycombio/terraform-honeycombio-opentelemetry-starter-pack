@@ -2,4 +2,4 @@
 
 ## v0.1.0 🌈
 
-- Initial release of the golden-otel starter pack module from Honeycombio
+- Initial release of the OpenTelemetry starter pack module from Honeycombio

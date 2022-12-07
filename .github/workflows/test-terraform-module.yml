@@ -9,7 +9,7 @@ on:
 
 jobs:
   tf-apply:
-    name: Test terraform-honeycombio-golden-otel-starter-pack
+    name: Test terraform-honeycombio-opentelemetry-starter-pack
     runs-on: ubuntu-latest
     defaults:
       run:

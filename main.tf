@@ -16,7 +16,7 @@ provider "honeycombio" {
 resource "honeycombio_dataset" "required-columns-dataset" {
   count       = var.create_required_columns_dataset ? 1 : 0
   name        = var.required_columns_dataset_name
-  description = "This dataset was created to ensure that all necessary columns exist in an environment that are required for the Golden OTEL Starter Pack"
+  description = "This dataset was created to ensure that all necessary columns exist in an environment that are required for the OpenTelemetry Starter Pack"
 }
 
 module "environment_wide_derived_columns" {
