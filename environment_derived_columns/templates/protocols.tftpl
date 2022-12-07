@@ -1,8 +1,12 @@
 IF(
+  %{ if query_rpc ~}
   OR(EXISTS($rpc.system),EXISTS($http.flavor)),
+  %{ else ~}
+  EXISTS($http.flavor),
+  %{ endif ~}
   COALESCE(
     %{ if query_rpc ~}
-    IF(EXISTS(${ rpc_system_column }), ${ rpc_system_column }),
+    IF(EXISTS($rpc.system), $rpc.system),
     %{ endif ~}
     IF(EQUALS($http.flavor, "1.0"), "HTTP/1.0"),
     IF(EQUALS($http.flavor, "1.1"), "HTTP/1.1"),
