@@ -1,24 +1,15 @@
-terraform {
-  required_version = ">= 0.13"
-  required_providers {
-    honeycombio = {
-      source  = "honeycombio/honeycombio"
-      version = "0.11.2"
-    }
-  }
-}
-
-provider "honeycombio" {
-  api_key = var.honeycomb_api_key
-  # You can supply this via the environment variable HONEYCOMB_API_KEY or by setting the value in a .tfvars file
-}
-
+####################################################
+# Create Dataset to Contain all Required Columns
+####################################################
 resource "honeycombio_dataset" "required-columns-dataset" {
   count       = var.create_required_columns_dataset ? 1 : 0
   name        = var.required_columns_dataset_name
   description = "This dataset was created to ensure that all necessary columns exist in an environment that are required for the OpenTelemetry Starter Pack"
 }
 
+####################################################
+# Create Derived Columns for the Environment
+####################################################
 module "environment_wide_derived_columns" {
   source                               = "./environment_derived_columns"
   honeycomb_api_key                    = var.honeycomb_api_key
@@ -31,6 +22,9 @@ module "environment_wide_derived_columns" {
   ]
 }
 
+####################################################
+# Create Saved Queries for Environment-Wide Queries
+####################################################
 module "environment_wide_queries" {
   source                          = "./environment_queries"
   honeycomb_api_key               = var.honeycomb_api_key
@@ -49,6 +43,9 @@ module "environment_wide_queries" {
   ]
 }
 
+####################################################
+# Create the All Services Board with the Queries
+####################################################
 module "environment_wide_boards" {
   source                                            = "./environment_boards"
   honeycomb_api_key                                 = var.honeycomb_api_key
