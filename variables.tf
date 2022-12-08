@@ -5,7 +5,7 @@ variable "honeycomb_api_key" {
 }
 
 variable "create_required_columns_dataset" {
-  description = "Create a dataset in an environment where columns can be created that are required by the OpenTelemetry Starter Pack.  If all required columns already exist in other datasets, you can choose to set this to false"
+  description = "Create a dataset in an environment where columns can be created that are required by the OpenTelemetry Starter Pack.  If set to false, the `required_columns_dataset_name` must be set to the name of an existing dataset or the build will fail"
   type        = bool
   default     = true
 }
