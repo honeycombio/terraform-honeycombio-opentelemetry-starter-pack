@@ -1,7 +1,14 @@
-# Changelog
-## [v0.1.1 🦄 (v0.1.1)](https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/releases/tag/v0.1.1) - 08 Dec 2022
+# CHANGELOG
 
-An upkeep release mostly, setting the name to the name used for the public release and doing some cleanup on dependency references and the documentation
+## [v0.1.2 🌈 (v0.1.2)](https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/releases/tag/v0.1.2) - 08 Dec 2022
+
+## 🧰 Maintenance
+
+- Remove reference to the honeycomb api key variable. [@tdarwin](https://github.com/tdarwin) ([#7](https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/issues/7))
+
+[Changes][v0.1.2]
+
+## [v0.1.1 🦄 (v0.1.1)](https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/releases/tag/v0.1.1) - 08 Dec 2022
 
 ## 🧰 Maintenance
 
@@ -9,7 +16,6 @@ An upkeep release mostly, setting the name to the name used for the public relea
 - Remove golden and otel from naming and use OpenTelmetry everywhere [@tdarwin](https://github.com/tdarwin) ([#3](https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/issues/3))
 
 [Changes][v0.1.1]
-
 
 ## [v0.1.0 🌈 (v0.1.0)](https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/releases/tag/v0.1.0) - 07 Dec 2022
 
@@ -21,7 +27,7 @@ Initial release of the OpenTelemetry starter pack module from Honeycomb
 
 [Changes][v0.1.0]
 
-
+[v0.1.2]: https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/compare/v0.1.1...v0.1.2
 [v0.1.1]: https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/compare/v0.1.0...v0.1.1
 [v0.1.0]: https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/tree/v0.1.0
 
