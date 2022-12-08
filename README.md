@@ -1,5 +1,4 @@
-TERRAFORM HONEYCOMBIO OPENTELEMETRY-STARTER-PACK
-================================================================
+# TERRAFORM HONEYCOMBIO OPENTELEMETRY-STARTER-PACK
 
 [![OSS Lifecycle](https://img.shields.io/osslifecycle/honeycombio/terraform-honeycombio-opentelemetry-starter-pack?color=success)](https://github.com/honeycombio/home/blob/main/honeycomb-oss-lifecycle-and-practices.md)
 [![CI](https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/actions/workflows/test-terraform-module.yml/badge.svg)](https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/actions?query=Test%20Terraform%20Module)
@@ -8,7 +7,7 @@ This module creates resources like Derived Columns, Saved Queries, and Boards in
 
 ## Use
 
-The minimal config is:
+The minimal config necessary for this module to run requires nothing other than the `source` for calling the module.  All other options are optional, so the minimum config for this module is the below code, and setting the `HONEYCOMB_API_KEY` environment variable:
 
 ```hcl
 module "explore-honeycombio-opentelemetry-starter-pack" {
@@ -33,7 +32,7 @@ see [USAGE.md](https://github.com/honeycombio/terraform-honeycombio-opentelemetr
 Examples of use of this module can be found
 in [`examples/`](https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/tree/main/examples)
 . We've
-provided a build durations exploration example.
+provided an example using some of the possible options that the module has with non-default values.
 
 ## Development
 
@@ -44,11 +43,9 @@ in [`tests/`](https://github.com/honeycombio/terraform-honeycombio-opentelemetry
 . To set up:
 
 1. Set the API key used by Terraform setting the HONEYCOMB_API_KEY environment variable.
-
-3. `terraform plan` and `terraform apply` will now work as expected, as will
+2. `terraform plan` and `terraform apply` will now work as expected, as will
    `terraform destroy`.
-
-4. Test cases also run as part of the pipeline.
+3. Test cases also run as part of the pipeline.
    See [test-terraform-module.yml](https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/blob/main/.github/workflows/test-terraform-module.yml)
 
 ### Docs
@@ -65,7 +62,6 @@ fmt`, and enforce this with a [github action](.github/workflows/tflint.yml).
 
 ## Contributions
 
-Features, bug fixes and other changes to this module are gladly accepted. Please open issues or a pull request with your
-change.
+Features, bug fixes and other changes to this module are gladly accepted. Please open issues or a pull request with your change.
 
 All contributions will be released under the Apache License 2.0.
