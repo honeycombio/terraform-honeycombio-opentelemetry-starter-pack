@@ -1,4 +1,4 @@
-module "honeycombio-golden-otel-starter-pack" {
+module "honeycombio-opentelemetry-starter-pack" {
   source = "../"
 
   count_400s_as_errors = false
@@ -7,5 +7,4 @@ module "honeycombio-golden-otel-starter-pack" {
   min_long_duration = 2000
   query_time_range = 43200
   required_columns_dataset_name = "-delete-me-later-"
-
 }

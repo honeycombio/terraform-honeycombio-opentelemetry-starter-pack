@@ -24,7 +24,7 @@ variable "max_long_duration" {
 }
 
 variable "create_required_columns_dataset" {
-  description = "Create a dataset in an environment where columns can be created that are required by the Golden OTEL Starter Pack.  If all required columns already exist in other datasets, you can choose to set this to false"
+  description = "Create a dataset in an environment where columns can be created that are required by the OpenTelemetry Starter Pack.  If all required columns already exist in other datasets, you can choose to set this to false"
   type        = bool
   default     = true
 }

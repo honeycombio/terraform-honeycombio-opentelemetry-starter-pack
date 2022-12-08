@@ -1,5 +1,5 @@
-module "honeycombio-golden-otel-starter-pack" {
-  source = "honeycombio/golden-otel-starter-pack/honeycombio"
+module "honeycombio-opentelemetry-starter-pack" {
+  source = "honeycombio/opentelemetry-starter-pack/honeycombio"
 
   count_400s_as_errors = false
   max_long_duration = 15000
