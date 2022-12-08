@@ -1,10 +1,3 @@
-variable "honeycomb_api_key" {
-  description = "Honeycomb API key"
-  type        = string
-  default     = null
-  # You can supply this via the environment variable HONEYCOMB_API_KEY or by setting the value in a .tfvars file
-}
-
 variable "query_time_range" {
   description = "Query Default Time Range (in seconds). Defaults to 86400 (24 hours)"
   type        = number

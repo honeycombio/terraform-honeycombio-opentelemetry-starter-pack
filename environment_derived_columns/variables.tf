@@ -1,10 +1,3 @@
-variable "honeycomb_api_key" {
-  description = "Honeycomb API key"
-  type        = string
-  default     = null
-  # You can supply this via the environment variable HONEYCOMB_API_KEY or by setting the value in a .tfvars file
-}
-
 variable "create_required_columns_dataset" {
   description = "Create a dataset in an environment where columns can be created that are required by the OpenTelemetry Starter Pack.  If all required columns already exist in other datasets, you can choose to set this to false"
   type        = bool
