@@ -1,5 +1,5 @@
 COALESCE(
-  IF(EXISTS($db.system), $db.system),
-  IF(EXISTS($db.type), $db.type),
+  $db.system,
+  $db.type,
   null
 )
