@@ -1,10 +1,4 @@
 ####################################################
-# Ensure Columns Exist That the Query Will Use
-####################################################
-
-# Column dependencies already provided in other queries
-
-####################################################
 # Define the Query Specification
 ####################################################
 data "honeycombio_query_specification" "count_distinct_traces_by_protocol" {
@@ -27,10 +21,6 @@ data "honeycombio_query_specification" "count_distinct_traces_by_protocol" {
   }
 
   time_range = var.query_time_range
-
-  depends_on = [
-    honeycombio_column.trace-trace_id,
-  ]
 }
 
 ####################################################

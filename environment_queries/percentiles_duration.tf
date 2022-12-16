@@ -1,10 +1,4 @@
 ####################################################
-# Ensure Columns Exist That the Query Will Use
-####################################################
-
-# Column dependencies defined elsewhere
-
-####################################################
 # Define the Query Specification
 ####################################################
 data "honeycombio_query_specification" "percentiles_of_duration" {
@@ -47,10 +41,6 @@ data "honeycombio_query_specification" "percentiles_of_duration" {
   }
 
   time_range = var.query_time_range
-
-  depends_on = [
-    honeycombio_column.duration_ms,
-  ]
 }
 
 ####################################################

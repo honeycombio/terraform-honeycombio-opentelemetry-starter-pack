@@ -1,21 +1,4 @@
 ####################################################
-# Ensure Columns Exist That the Query Will Use
-####################################################
-resource "honeycombio_column" "trace-parent_id" {
-  count = var.create_required_columns_dataset ? 1 : 0
-  key_name = "trace.parent_id"
-  type = "string"
-  dataset = var.required_columns_dataset_name
-}
-
-resource "honeycombio_column" "service-name" {
-  count = var.create_required_columns_dataset ? 1 : 0
-  key_name = "service.name"
-  type = "string"
-  dataset = var.required_columns_dataset_name
-}
-
-####################################################
 # Define the Query Specification
 ####################################################
 data "honeycombio_query_specification" "count_of_traces_by_service" {
@@ -38,10 +21,6 @@ data "honeycombio_query_specification" "count_of_traces_by_service" {
   }
 
   time_range = var.query_time_range
-
-  depends_on = [
-    honeycombio_column.trace-parent_id,
-  ]
 }
 
 ####################################################

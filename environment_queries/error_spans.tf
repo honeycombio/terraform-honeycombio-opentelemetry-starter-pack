@@ -1,10 +1,4 @@
 ####################################################
-# Ensure Columns Exist That the Query Will Use
-####################################################
-
-# Previously Ensured Column Dependencies
-
-####################################################
 # Define the Query Specification
 ####################################################
 data "honeycombio_query_specification" "rate_of_error_spans" {
@@ -34,10 +28,6 @@ data "honeycombio_query_specification" "rate_of_error_spans" {
   }
 
   time_range = var.query_time_range
-
-  depends_on = [
-    honeycombio_column.meta-annotation_type,
-  ]
 }
 
 ####################################################

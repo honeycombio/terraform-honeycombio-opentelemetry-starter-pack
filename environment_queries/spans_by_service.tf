@@ -1,10 +1,4 @@
 ####################################################
-# Ensure Columns Exist That the Query Will Use
-####################################################
-
-# Already Declared
-
-####################################################
 # Define the Query Specification
 ####################################################
 data "honeycombio_query_specification" "count_of_total_spans_by_service" {
@@ -22,10 +16,6 @@ data "honeycombio_query_specification" "count_of_total_spans_by_service" {
   }
 
   time_range = var.query_time_range
-
-  depends_on = [
-    honeycombio_column.service-name,
-  ]
 }
 
 ####################################################

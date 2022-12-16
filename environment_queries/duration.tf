@@ -1,14 +1,4 @@
 ####################################################
-# Ensure Columns Exist That the Query Will Use
-####################################################
-resource "honeycombio_column" "duration_ms" {
-  count = var.create_required_columns_dataset ? 1 : 0
-  key_name = "duration_ms"
-  type = "float"
-  dataset = var.required_columns_dataset_name
-}
-
-####################################################
 # Define the Query Specification
 ####################################################
 data "honeycombio_query_specification" "heatmap_duration" {
@@ -19,9 +9,6 @@ data "honeycombio_query_specification" "heatmap_duration" {
 
   time_range = var.query_time_range
 
-  depends_on = [
-    honeycombio_column.duration_ms,
-  ]
 }
 
 ####################################################
