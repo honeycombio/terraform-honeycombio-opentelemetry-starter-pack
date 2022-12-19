@@ -16,22 +16,22 @@ module "environment_wide_columns" {
   required_columns_dataset_name = var.required_columns_dataset_name
 
   required_columns = {
-    "db.system" = "string",
-    "duration_ms" = "float",
-    "error" = "boolean",
-    "http.flavor" = "string",
-    "http.status_code" = "integer",
-    "meta.annotation_type" = "string",
-    "rpc.grpc.status_code" = "integer",
-    "rpc.system" = "string",
-    "service.name" = "string",
-    "span.kind" = "string",
-    "status_code" = "integer",
-    "trace.parent_id" = "string",
-    "trace.trace_id" = "string",
+    "db.system"              = "string",
+    "duration_ms"            = "float",
+    "error"                  = "boolean",
+    "http.flavor"            = "string",
+    "http.status_code"       = "integer",
+    "meta.annotation_type"   = "string",
+    "rpc.grpc.status_code"   = "integer",
+    "rpc.system"             = "string",
+    "service.name"           = "string",
+    "span.kind"              = "string",
+    "status_code"            = "integer",
+    "trace.parent_id"        = "string",
+    "trace.trace_id"         = "string",
     "telemetry.sdk.language" = "string",
-    "telemetry.sdk.version" = "string",
-    "telemetry.sdk.name" = "string",
+    "telemetry.sdk.version"  = "string",
+    "telemetry.sdk.name"     = "string",
   }
 
   depends_on = [
