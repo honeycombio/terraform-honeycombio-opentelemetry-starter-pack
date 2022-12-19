@@ -17,6 +17,7 @@ module "environment_wide_columns" {
 
   required_columns = {
     "db.system"              = "string",
+    "db.type"                = "string",
     "duration_ms"            = "float",
     "error"                  = "boolean",
     "http.flavor"            = "string",
