@@ -8,6 +8,40 @@ resource "honeycombio_dataset" "required-columns-dataset" {
 }
 
 ####################################################
+# Create Required Columns
+####################################################
+module "environment_wide_columns" {
+  count                         = var.create_required_columns_dataset ? 1 : 0
+  source                        = "./environment_columns"
+  required_columns_dataset_name = var.required_columns_dataset_name
+
+  required_columns = {
+    "db.system"              = "string",
+    "db.type"                = "string",
+    "duration_ms"            = "float",
+    "error"                  = "boolean",
+    "http.flavor"            = "string",
+    "http.status_code"       = "integer",
+    "meta.annotation_type"   = "string",
+    "rpc.grpc.status_code"   = "integer",
+    "rpc.system"             = "string",
+    "service.name"           = "string",
+    "span.kind"              = "string",
+    "status_code"            = "integer",
+    "trace.parent_id"        = "string",
+    "trace.trace_id"         = "string",
+    "telemetry.sdk.language" = "string",
+    "telemetry.sdk.version"  = "string",
+    "telemetry.sdk.name"     = "string",
+  }
+
+  depends_on = [
+    honeycombio_dataset.required-columns-dataset
+  ]
+}
+
+
+####################################################
 # Create Derived Columns for the Environment
 ####################################################
 module "environment_wide_derived_columns" {
@@ -17,7 +51,8 @@ module "environment_wide_derived_columns" {
   count_400s_as_errors                 = var.count_400s_as_errors
 
   depends_on = [
-    honeycombio_dataset.required-columns-dataset
+    honeycombio_dataset.required-columns-dataset,
+    module.environment_wide_columns,
   ]
 }
 
@@ -37,6 +72,7 @@ module "environment_wide_queries" {
   dc_ensure_nonroot_server_span   = module.environment_wide_derived_columns.dc_ensure_nonroot_server_span_alias
   depends_on = [
     honeycombio_dataset.required-columns-dataset,
+    module.environment_wide_columns,
     module.environment_wide_derived_columns
   ]
 }
@@ -74,6 +110,7 @@ module "environment_wide_boards" {
   count_distinct_traces_by_protocol_annotation_id   = module.environment_wide_queries.count_distinct_traces_by_protocol_annotation_id
   depends_on = [
     honeycombio_dataset.required-columns-dataset,
+    module.environment_wide_columns,
     module.environment_wide_derived_columns,
     module.environment_wide_queries
   ]

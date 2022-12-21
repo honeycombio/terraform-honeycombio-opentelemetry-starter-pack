@@ -1,10 +1,4 @@
 ####################################################
-# Ensure Columns Exist That the Query Will Use
-####################################################
-
-# Using derived columns, or already defined columns
-
-####################################################
 # Define the Query Specification
 ####################################################
 data "honeycombio_query_specification" "count_of_traces_by_db_system" {

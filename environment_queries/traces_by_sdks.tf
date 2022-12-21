@@ -1,35 +1,4 @@
 ####################################################
-# Ensure Columns Exist That the Query Will Use
-####################################################
-resource "honeycombio_column" "trace-trace_id" {
-  count = var.create_required_columns_dataset ? 1 : 0
-  key_name = "trace.trace_id"
-  type = "string"
-  dataset = var.required_columns_dataset_name
-}
-
-resource "honeycombio_column" "telemetry-sdk-language" {
-  count = var.create_required_columns_dataset ? 1 : 0
-  key_name = "telemetry.sdk.language"
-  type = "string"
-  dataset = var.required_columns_dataset_name
-}
-
-resource "honeycombio_column" "telemetry-sdk-version" {
-  count = var.create_required_columns_dataset ? 1 : 0
-  key_name = "telemetry.sdk.version"
-  type = "string"
-  dataset = var.required_columns_dataset_name
-}
-
-resource "honeycombio_column" "telemetry-sdk-name" {
-  count = var.create_required_columns_dataset ? 1 : 0
-  key_name = "telemetry.sdk.name"
-  type = "string"
-  dataset = var.required_columns_dataset_name
-}
-
-####################################################
 # Define the Query Specification
 ####################################################
 data "honeycombio_query_specification" "count_of_traces_by_telemetry_sdks" {
@@ -51,13 +20,6 @@ data "honeycombio_query_specification" "count_of_traces_by_telemetry_sdks" {
   }
 
   time_range = var.query_time_range
-
-  depends_on = [
-    honeycombio_column.trace-trace_id,
-    honeycombio_column.telemetry-sdk-language,
-    honeycombio_column.telemetry-sdk-version,
-    honeycombio_column.telemetry-sdk-name,
-  ]
 }
 
 ####################################################
