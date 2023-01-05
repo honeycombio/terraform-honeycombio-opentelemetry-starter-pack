@@ -2,7 +2,7 @@
 # Create Dataset to Contain all Required Columns
 ####################################################
 resource "honeycombio_dataset" "required-columns-dataset" {
-  count       = var.create_required_columns_dataset ? 1 : 0
+  count       = var.create_required_columns_dataset && var.create_required_columns ? 1 : 0
   name        = var.required_columns_dataset_name
   description = "This dataset was created to ensure that all necessary columns exist in an environment that are required for the OpenTelemetry Starter Pack"
 }
@@ -11,8 +11,8 @@ resource "honeycombio_dataset" "required-columns-dataset" {
 # Create Required Columns
 ####################################################
 module "environment_wide_columns" {
-  count                         = var.create_required_columns_dataset ? 1 : 0
-  source                        = "./environment_columns"
+  count                         = var.create_required_columns ? 1 : 0
+  source                        = "./modules/environment_columns"
   required_columns_dataset_name = var.required_columns_dataset_name
 
   required_columns = {
@@ -40,12 +40,26 @@ module "environment_wide_columns" {
   ]
 }
 
+module "environment_wide_rpc_columns" {
+  count                         = var.create_required_columns && var.include_rpc_protocol_info_in_queries ? 1 : 0
+  source                        = "./modules/environment_columns"
+  required_columns_dataset_name = var.required_columns_dataset_name
+
+  required_columns = {
+    "rpc.grpc.status_code"   = "integer",
+    "rpc.system"             = "string",
+  }
+
+  depends_on = [
+    honeycombio_dataset.required-columns-dataset
+  ]
+}
 
 ####################################################
 # Create Derived Columns for the Environment
 ####################################################
 module "environment_wide_derived_columns" {
-  source                               = "./environment_derived_columns"
+  source                               = "./modules/environment_derived_columns"
   required_columns_dataset_name        = var.required_columns_dataset_name
   include_rpc_protocol_info_in_queries = var.include_rpc_protocol_info_in_queries
   count_400s_as_errors                 = var.count_400s_as_errors
@@ -60,7 +74,7 @@ module "environment_wide_derived_columns" {
 # Create Saved Queries for Environment-Wide Queries
 ####################################################
 module "environment_wide_queries" {
-  source                          = "./environment_queries"
+  source                          = "./modules/environment_queries"
   required_columns_dataset_name   = var.required_columns_dataset_name
   query_time_range                = var.query_time_range
   min_long_duration               = var.min_long_duration
@@ -81,7 +95,7 @@ module "environment_wide_queries" {
 # Create the All Services Board with the Queries
 ####################################################
 module "environment_wide_boards" {
-  source                                            = "./environment_boards"
+  source                                            = "./modules/environment_boards"
   count_of_traces_by_service_id                     = module.environment_wide_queries.count_of_traces_by_service_id
   count_of_traces_by_service_annotation_id          = module.environment_wide_queries.count_of_traces_by_service_annotation_id
   count_of_traces_by_http_status_code_id            = module.environment_wide_queries.count_of_traces_by_http_status_code_id
