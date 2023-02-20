@@ -46,8 +46,8 @@ module "environment_wide_rpc_columns" {
   required_columns_dataset_name = var.required_columns_dataset_name
 
   required_columns = {
-    "rpc.grpc.status_code"   = "integer",
-    "rpc.system"             = "string",
+    "rpc.grpc.status_code" = "integer",
+    "rpc.system"           = "string",
   }
 
   depends_on = [
