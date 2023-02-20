@@ -11,36 +11,36 @@ resource "honeycombio_dataset" "required-columns-dataset" {
 # Create Required Columns
 ####################################################
 locals {
-    required_columns = {
-      "db.system"              = "string",
-      "db.type"                = "string",
-      "duration_ms"            = "float",
-      "error"                  = "boolean",
-      "http.flavor"            = "string",
-      "http.status_code"       = "integer",
-      "meta.annotation_type"   = "string",
-      "rpc.grpc.status_code"   = "integer",
-      "rpc.system"             = "string",
-      "service.name"           = "string",
-      "span.kind"              = "string",
-      "status_code"            = "integer",
-      "trace.parent_id"        = "string",
-      "trace.trace_id"         = "string",
-      "telemetry.sdk.language" = "string",
-      "telemetry.sdk.version"  = "string",
-      "telemetry.sdk.name"     = "string",
-    }
+  required_columns = {
+    "db.system"              = "string",
+    "db.type"                = "string",
+    "duration_ms"            = "float",
+    "error"                  = "boolean",
+    "http.flavor"            = "string",
+    "http.status_code"       = "integer",
+    "meta.annotation_type"   = "string",
+    "rpc.grpc.status_code"   = "integer",
+    "rpc.system"             = "string",
+    "service.name"           = "string",
+    "span.kind"              = "string",
+    "status_code"            = "integer",
+    "trace.parent_id"        = "string",
+    "trace.trace_id"         = "string",
+    "telemetry.sdk.language" = "string",
+    "telemetry.sdk.version"  = "string",
+    "telemetry.sdk.name"     = "string",
+  }
 
-    required_rpc_columns = {
-      "rpc.grpc.status_code"   = "integer",
-      "rpc.system"             = "string",
-    }
+  required_rpc_columns = {
+    "rpc.grpc.status_code" = "integer",
+    "rpc.system"           = "string",
+  }
 }
 
 resource "honeycombio_column" "required_columns" {
-  count = var.create_required_columns ? length(local.required_columns) : 0
-  name = keys(local.required_columns)[count.index]
-  type = values(local.required_columns)[count.index]
+  count   = var.create_required_columns ? length(local.required_columns) : 0
+  name    = keys(local.required_columns)[count.index]
+  type    = values(local.required_columns)[count.index]
   dataset = var.required_columns_dataset_name
   depends_on = [
     honeycombio_dataset.required-columns-dataset
@@ -48,9 +48,9 @@ resource "honeycombio_column" "required_columns" {
 }
 
 resource "honeycombio_column" "required_rpc_columns" {
-  count = var.create_required_columns && var.include_rpc_protocol_info_in_queries ? length(local.required_rpc_columns) : 0
-  name = keys(local.required_rpc_columns)[count.index]
-  type = values(local.required_rpc_columns)[count.index]
+  count   = var.create_required_columns && var.include_rpc_protocol_info_in_queries ? length(local.required_rpc_columns) : 0
+  name    = keys(local.required_rpc_columns)[count.index]
+  type    = values(local.required_rpc_columns)[count.index]
   dataset = var.required_columns_dataset_name
   depends_on = [
     honeycombio_dataset.required-columns-dataset
