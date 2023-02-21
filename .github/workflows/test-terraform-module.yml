@@ -34,5 +34,5 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve -no-color -var "required_columns_dataset_name=${{ env.DSETNAME }}"
 
-      # - name: Terraform Destroy
-      #   run: terraform destroy -auto-approve -no-color -var "required_columns_dataset_name=${{ env.DSETNAME }}"
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve -no-color -var "required_columns_dataset_name=${{ env.DSETNAME }}"

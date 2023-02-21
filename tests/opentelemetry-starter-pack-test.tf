@@ -6,8 +6,8 @@ module "honeycombio-opentelemetry-starter-pack" {
   max_long_duration                    = 15000
   min_long_duration                    = 2000
   query_time_range                     = 604800
-  create_required_columns              = true
-  create_required_columns_dataset      = true
+  create_required_columns              = false
+  create_required_columns_dataset      = false
   required_columns_dataset_name        = var.required_columns_dataset_name
 }
 
