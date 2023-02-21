@@ -1,7 +1,13 @@
 variable "create_required_columns_dataset" {
-  description = "Create a dataset in an environment where columns can be created that are required by the OpenTelemetry Starter Pack.  If set to false, the `required_columns_dataset_name` must be set to the name of an existing dataset or the build will fail"
+  description = "Create a dataset in an environment where columns can be created that are required by the OpenTelemetry Starter Pack. Used when applying the starter pack to an environment without any OpenTelemtry data already existing"
   type        = bool
-  default     = true
+  default     = false
+}
+
+variable "create_required_columns" {
+  description = "Create columns that are required by the OpenTelemetry Starter Pack. If used, you must set the `required_columns_dataset_name` variable to determine where the columns will be created"
+  type        = bool
+  default     = false
 }
 
 variable "required_columns_dataset_name" {
