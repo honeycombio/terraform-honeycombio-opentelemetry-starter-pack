@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## [v0.3.0 🪱](https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/releases/tag/v0.3.0) - 21 Feb 2023
+
+### 🐛 Bug Fixes
+
+- Update TF tests to not create columns or datasets [@tdarwin](https://github.com/tdarwin) ([#14](https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/issues/14))
+
+### 🧰 Maintenance
+
+- Remove column submodule as unnecessary [@tdarwin](https://github.com/tdarwin) ([#12](https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/issues/12))
+- Disable dataset and column creation by default [@tdarwin](https://github.com/tdarwin) ([#12](https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/issues/12))
+
+[Changes][v0.3.0]
+
 ## [v0.2.0 🤖  (v0.2.0)](https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/releases/tag/v0.2.0) - 19 Dec 2022
 
 ### 🚀 Features
@@ -36,6 +49,7 @@ Initial release of the OpenTelemetry starter pack module from Honeycomb
 
 [Changes][v0.1.0]
 
+[v0.3.0]: https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/compare/v0.2.0...v0.3.0
 [v0.2.0]: https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/compare/v0.1.2...v0.2.0
 [v0.1.2]: https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/compare/v0.1.1...v0.1.2
 [v0.1.1]: https://github.com/honeycombio/terraform-honeycombio-opentelemetry-starter-pack/compare/v0.1.0...v0.1.1
