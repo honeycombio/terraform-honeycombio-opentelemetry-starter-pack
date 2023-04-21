@@ -7,7 +7,7 @@ variable "create_required_columns_dataset" {
 variable "create_required_columns" {
   description = "Create columns that are required by the OpenTelemetry Starter Pack. If used, you must set the `required_columns_dataset_name` variable to determine where the columns will be created"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "required_columns_dataset_name" {
