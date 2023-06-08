@@ -36,14 +36,14 @@ locals {
     "telemetry.sdk.name"     = "string",
   }
 
-  cols_to_create = setsubtract(keys(local.required_columns), data.honeycombio_columns.all[0].names) || []
+  cols_to_create = setsubtract(keys(local.required_columns), data.honeycombio_columns.all[0].names)
 
   required_rpc_columns = {
     "rpc.grpc.status_code" = "integer",
     "rpc.system"           = "string",
   }
 
-  rpccols_to_create = setsubtract(keys(local.required_rpc_columns), data.honeycombio_columns.all[0].names) || []
+  rpccols_to_create = setsubtract(keys(local.required_rpc_columns), data.honeycombio_columns.all[0].names)
 }
 
 output "columns_created" {
