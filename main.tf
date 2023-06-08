@@ -8,6 +8,7 @@ resource "honeycombio_dataset" "required-columns-dataset" {
 }
 
 data "honeycombio_columns" "all" {
+  count = var.create_required_columns_dataset && var.create_required_columns ? 1 : 0
   dataset = var.required_columns_dataset_name
 }
 
