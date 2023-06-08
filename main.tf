@@ -7,6 +7,11 @@ resource "honeycombio_dataset" "required-columns-dataset" {
   description = "This dataset was created to ensure that all necessary columns exist in an environment that are required for the OpenTelemetry Starter Pack"
 }
 
+data "honeycombio_columns" "all" {
+  count   = var.create_required_columns_dataset && var.create_required_columns ? 1 : 0
+  dataset = var.required_columns_dataset_name
+}
+
 ####################################################
 # Create Required Columns
 ####################################################
@@ -31,16 +36,25 @@ locals {
     "telemetry.sdk.name"     = "string",
   }
 
+  cols_to_create = setsubtract(keys(local.required_columns), data.honeycombio_columns.all[0].names)
+
   required_rpc_columns = {
     "rpc.grpc.status_code" = "integer",
     "rpc.system"           = "string",
   }
+
+  rpccols_to_create = setsubtract(keys(local.required_rpc_columns), data.honeycombio_columns.all[0].names)
+}
+
+output "columns_created" {
+  value = setunion(local.cols_to_create, local.rpccols_to_create)
 }
 
 resource "honeycombio_column" "required_columns" {
-  count   = var.create_required_columns ? length(local.required_columns) : 0
-  name    = keys(local.required_columns)[count.index]
-  type    = values(local.required_columns)[count.index]
+  for_each = toset(local.cols_to_create)
+
+  name    = each.key
+  type    = lookup(local.required_columns, each.key, "string")
   dataset = var.required_columns_dataset_name
   depends_on = [
     honeycombio_dataset.required-columns-dataset
@@ -48,9 +62,10 @@ resource "honeycombio_column" "required_columns" {
 }
 
 resource "honeycombio_column" "required_rpc_columns" {
-  count   = var.create_required_columns && var.include_rpc_protocol_info_in_queries ? length(local.required_rpc_columns) : 0
-  name    = keys(local.required_rpc_columns)[count.index]
-  type    = values(local.required_rpc_columns)[count.index]
+  for_each = toset(local.rpccols_to_create)
+
+  name    = each.key
+  type    = lookup(local.required_rpc_columns, each.key, "string")
   dataset = var.required_columns_dataset_name
   depends_on = [
     honeycombio_dataset.required-columns-dataset
